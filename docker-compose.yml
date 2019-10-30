@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  drawpile-srv:
+    build: ./
+    image: brush-dojo/drawpile-srv
+    volumes:
+      - drawpile-data:/home/drawpile
+    networks:
+      - webnet
+    ports:
+      - "27750:27750"
+      - "127.0.0.1:27780:27780"
+    secrets:
+      - web-admin-credentials
+networks:
+  webnet: ~
+volumes:
+  drawpile-data: ~
+secrets:
+  web-admin-credentials:
+    file: ./secrets/web-admin-credentials
